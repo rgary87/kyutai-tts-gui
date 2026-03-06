@@ -1,0 +1,10 @@
+services:
+  kyutai-tts-gui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kyutai-tts-gui:latest
+    container_name: kyutai-tts-gui
+    ports:
+      - "5173:80"
+    restart: unless-stopped

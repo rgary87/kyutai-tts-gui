@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyutai TTS Local UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">LOCAL TOOLING</p>
+      <h1>Kyutai TTS Console</h1>
+      <p class="subtitle">Generate speech from your <code>kyutai-tts-gpu</code> container with OpenAI-compatible requests.</p>
+    </header>
+
+    <section class="panel" aria-label="API settings">
+      <div class="row row-two">
+        <label for="apiBaseUrl">
+          API Base URL
+          <input id="apiBaseUrl" type="url" value="http://localhost:8000" />
+        </label>
+        <label for="model">
+          Model
+          <select id="model">
+            <option value="tts-1" selected>tts-1</option>
+            <option value="tts-1-hd">tts-1-hd</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row row-three">
+        <label for="voice">
+          Voice
+          <select id="voice">
+            <option value="alloy" selected>alloy</option>
+            <option value="echo">echo</option>
+            <option value="fable">fable</option>
+            <option value="onyx">onyx</option>
+            <option value="nova">nova</option>
+            <option value="shimmer">shimmer</option>
+            <option value="dev1">dev1</option>
+            <option value="dev3">dev3</option>
+          </select>
+        </label>
+
+        <label for="responseFormat">
+          Output Format
+          <select id="responseFormat">
+            <option value="mp3" selected>mp3</option>
+            <option value="wav">wav</option>
+            <option value="flac">flac</option>
+            <option value="aac">aac</option>
+            <option value="opus">opus</option>
+            <option value="pcm">pcm</option>
+          </select>
+        </label>
+
+        <label for="speed">
+          Speed <span id="speedValue">1.00x</span>
+          <input id="speed" type="range" min="0.25" max="4" step="0.05" value="1" />
+        </label>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Speech input">
+      <label for="textInput">
+        Text
+        <textarea id="textInput" rows="6" maxlength="4096" placeholder="Type the text to synthesize..."></textarea>
+      </label>
+      <p class="hint"><span id="charCount">0</span> / 4096 characters</p>
+
+      <div class="button-row">
+        <button id="healthBtn" class="ghost" type="button">Check API Health</button>
+        <button id="speakBtn" class="primary" type="button">Generate Speech</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Output">
+      <div class="status-wrap">
+        <p id="status" class="status">Idle.</p>
+        <p id="timing" class="timing"></p>
+      </div>
+      <audio id="audioPlayer" controls preload="none"></audio>
+      <a id="downloadLink" class="download disabled" href="#" download>Download Audio</a>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
