@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kyutai TTS Local UI</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -36,14 +37,7 @@
         <label for="voice">
           Voice
           <select id="voice">
-            <option value="alloy" selected>alloy</option>
-            <option value="echo">echo</option>
-            <option value="fable">fable</option>
-            <option value="onyx">onyx</option>
-            <option value="nova">nova</option>
-            <option value="shimmer">shimmer</option>
-            <option value="dev1">dev1</option>
-            <option value="dev3">dev3</option>
+            <option value="" selected>Loading voices...</option>
           </select>
         </label>
 
@@ -76,6 +70,8 @@
       <div class="button-row">
         <button id="healthBtn" class="ghost" type="button">Check API Health</button>
         <button id="speakBtn" class="primary" type="button">Generate Speech</button>
+        <button id="generateAllBtn" class="ghost" type="button">Generate For All Voices</button>
+        <button id="stopAllBtn" class="danger" type="button" disabled>Stop</button>
       </div>
     </section>
 
@@ -85,7 +81,11 @@
         <p id="timing" class="timing"></p>
       </div>
       <audio id="audioPlayer" controls preload="none"></audio>
-      <a id="downloadLink" class="download disabled" href="#" download>Download Audio</a>
+      <div class="output-actions">
+        <a id="downloadLink" class="download disabled" href="#" download>Download Audio</a>
+        <button id="singleFavoriteBtn" class="favorite-star" type="button" aria-pressed="false" title="Mark as favorite">☆</button>
+      </div>
+      <div id="voiceResults" class="voice-results" aria-live="polite"></div>
     </section>
   </main>
 
